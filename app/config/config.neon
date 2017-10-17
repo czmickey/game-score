@@ -1,0 +1,19 @@
+parameters:
+    redis:
+        host: 127.0.0.1
+        port: 6379
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	router: App\RouterFactory::createRouter
+	inputParamsChecker: App\model\service\InputParamsChecker
+	scoreRepository: App\model\repository\ScoreRepository(%redis%)
